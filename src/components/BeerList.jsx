@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import apiUrl from '../config';
 
 const BeerList = ({ beers }) => (
@@ -18,7 +19,9 @@ const BeerList = ({ beers }) => (
             <td>
               <img src={`${apiUrl()}${beer.thumbnailImageUrl}`} />
             </td>
-            <td>{beer.name}</td>
+            <td>
+              <Link to={`/beers/${beer.id}`}>{beer.name}</Link>
+            </td>
             <td>{beer.brewery.name}</td>
             <td>{beer.rating}</td>
           </tr>
