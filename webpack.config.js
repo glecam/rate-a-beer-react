@@ -1,14 +1,15 @@
 /* eslint-disable */
 const path = require('path');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'bundle'),
-    publicPath: '/bundle/',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -35,6 +36,10 @@ module.exports = {
   plugins: [
     // show friendly build errors
     new FriendlyErrorsWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+    }),
   ],
   resolve: {
     // allow import of js and jsx files
@@ -50,6 +55,6 @@ module.exports = {
     quiet: true,
     historyApiFallback: true,
     noInfo: false,
-    contentBase: 'src',
+    contentBase: './public',
   },
 };
