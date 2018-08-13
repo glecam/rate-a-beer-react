@@ -1,5 +1,23 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col {
+  width: 32%;
+  margin-top: 10px;
+}
+
+.btn {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.panel-default .panel-heading {
+  background-color: #f7f7f7;
+}
+
+.center-block {
+  float: none;
 }
