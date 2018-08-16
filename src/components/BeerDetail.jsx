@@ -1,16 +1,77 @@
-// const player = PlayerAPI.get(parseInt(props.match.params.number, 10));
-// if (!player) {
-//   return <div>Sorry, but the player was not found</div>;
-// }
+import React, { Component } from 'react';
+import api from '../api';
+import apiUrl from '../config';
 
-import React from 'react';
+export default class BeerDetail extends Component {
+  state = {
+    beer: {
+      brewery: {},
+    },
+    hasError: false,
+  };
 
-const BeerDetails = props => {
-  console.log(props.match.params.id);
+  componentDidMount() {
+    this.loadBeer();
+  }
 
-  const id = parseInt(props.match.params.number, 10);
+  loadBeer = async () => {
+    const id = parseInt(this.props.match.params.id, 10);
 
-  return <div>hello</div>;
-};
+    try {
+      const result = await api.get(`/beers/${id}`);
+      this.setState(state => ({
+        ...state,
+        beer: result.data,
+      }));
+    } catch (error) {
+      this.setState(state => ({
+        ...state,
+        hasError: true,
+      }));
+    }
+  };
 
-export default BeerDetails;
+  render() {
+    const { beer, hasError } = this.state;
+    if (hasError) {
+      return (
+        <div>
+          Sorry, the beer with id {this.props.match.id} could not be found
+        </div>
+      );
+    }
+
+    console.log(beer);
+    return (
+      <div className="row">
+        <div className="col-xs-12 col-md-4">
+          <div className="card">
+            <div className="box">
+              <div className="icon">
+                <div className="image">
+                  <img
+                    src={`${apiUrl()}${beer.thumbnailImageUrl}`}
+                    className="img-circle"
+                  />
+                </div>
+              </div>
+              <div className="card-block">
+                <h4 className="card-title">{beer.name}</h4>
+                <div className="meta">
+                  Brewed by &ldquo;{beer.brewery.name}&rdquo;
+                </div>
+                <div className="card-text">{beer.brewery.address}</div>
+                <div className="card-text">
+                  {beer.brewery.city} - {beer.brewery.country}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-8">
+          <div>map here</div>
+        </div>
+      </div>
+    );
+  }
+}
