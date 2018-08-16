@@ -5,10 +5,7 @@ import apiUrl from '../config';
 
 const Beer = ({ beer }) => {
   console.log(beer);
-  // const player = PlayerAPI.get(parseInt(props.match.params.number, 10));
-  // if (!player) {
-  //   return <div>Sorry, but the player was not found</div>;
-  // }
+
   return (
     <div>
       <div className="panel panel-default">
@@ -21,18 +18,19 @@ const Beer = ({ beer }) => {
           <table className="table">
             <tbody>
               <tr>
-                <td>
+                <td style={{ width: '29%' }}>
                   <strong>Brewery:</strong>
                 </td>
                 <td>{beer.brewery.name}</td>
               </tr>
               <tr>
-                <td>
+                <td style={{ width: '29%' }}>
                   <strong>Rating:</strong>
                 </td>
                 <td>
                   <StarRatingComponent
                     editing={false}
+                    name="stars"
                     starCount={5}
                     value={beer.rating}
                   />

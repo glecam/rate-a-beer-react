@@ -13,6 +13,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={BeerContainer} />
               <Route exact path="/beers" component={BeerContainer} />
+              <Route exact path="/beers/:id" component={BeerDetail} />
               <Route exact path="/contact" render={() => <h1>Contact Us</h1>} />
 
               <Route render={() => <h1>Page not found</h1>} />
