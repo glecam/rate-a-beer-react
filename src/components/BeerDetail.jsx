@@ -5,9 +5,6 @@ import Map from './Map';
 
 export default class BeerDetail extends Component {
   state = {
-    beer: {
-      brewery: {},
-    },
     hasError: false,
   };
 
@@ -34,6 +31,7 @@ export default class BeerDetail extends Component {
 
   render() {
     const { beer, hasError } = this.state;
+
     if (hasError) {
       return (
         <div>
@@ -42,36 +40,44 @@ export default class BeerDetail extends Component {
       );
     }
 
-    console.log(beer);
     return (
-      <div className="row">
-        <div className="col-xs-12 col-md-4">
-          <div className="card">
-            <div className="box">
-              <div className="icon">
-                <div className="image">
-                  <img
-                    src={`${apiUrl()}${beer.thumbnailImageUrl}`}
-                    className="img-circle"
-                  />
+      <div>
+        {this.state &&
+          this.state.beer && (
+            <div className="row">
+              <div className="col-xs-12 col-md-4">
+                <div className="card">
+                  <div className="box">
+                    <div className="icon">
+                      <div className="image">
+                        <img
+                          src={`${apiUrl()}${beer.thumbnailImageUrl}`}
+                          className="img-circle"
+                        />
+                      </div>
+                    </div>
+                    <div className="card-block">
+                      <h4 className="card-title">{beer.name}</h4>
+                      <div className="meta">
+                        Brewed by &ldquo;{beer.brewery.name}&rdquo;
+                      </div>
+                      <div className="card-text">{beer.brewery.address}</div>
+                      <div className="card-text">
+                        {beer.brewery.city} - {beer.brewery.country}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="card-block">
-                <h4 className="card-title">{beer.name}</h4>
-                <div className="meta">
-                  Brewed by &ldquo;{beer.brewery.name}&rdquo;
-                </div>
-                <div className="card-text">{beer.brewery.address}</div>
-                <div className="card-text">
-                  {beer.brewery.city} - {beer.brewery.country}
-                </div>
+              <div className="col-md-8">
+                <Map
+                  center={`${beer.brewery.address}, ${beer.brewery.city} ${
+                    beer.brewery.country
+                  }`}
+                />
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-md-8">
-          <Map isMarkerShown />
-        </div>
+          )}
       </div>
     );
   }

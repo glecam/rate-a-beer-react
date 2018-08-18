@@ -34,7 +34,7 @@ h5 {
   overflow: hidden;
   padding: 0;
   border: none;
-  border-radius: .28571429rem;
+  border-radius: 0.28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
@@ -44,7 +44,7 @@ h5 {
   margin: 0;
   padding: 1em;
   border: none;
-  border-top: 1px solid rgba(34, 36, 38, .1);
+  border-top: 1px solid rgba(34, 36, 38, 0.1);
   box-shadow: none;
 }
 
@@ -62,11 +62,11 @@ h5 {
 
 .card-text {
   clear: both;
-  margin-top: .5em;
-  color: rgba(0, 0, 0, .68);
+  margin-top: 0.5em;
+  color: rgba(0, 0, 0, 0.68);
 }
 
-.box>.icon>.image {
+.box > .icon > .image {
   position: relative;
   z-index: 2;
   margin: auto;
@@ -76,4 +76,8 @@ h5 {
   line-height: 88px;
   border-radius: 50%;
   vertical-align: middle;
+}
+
+.map-marker {
+  height: 35px;
 }
