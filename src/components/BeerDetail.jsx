@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import apiUrl from '../config';
+import Map from './Map';
 
 export default class BeerDetail extends Component {
   state = {
@@ -69,7 +70,7 @@ export default class BeerDetail extends Component {
           </div>
         </div>
         <div className="col-md-8">
-          <div>map here</div>
+          <Map isMarkerShown />
         </div>
       </div>
     );
